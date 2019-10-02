@@ -1,0 +1,32 @@
+<ul class="tickets">
+  <li *ngFor="let ticket of tickets">
+    <span *ngIf="ticket.status" class="ticket-open">
+      <span class="col-md-2">{{ticket.name}}</span>
+      <span class="col-md-2">{{ticket.assignee}}</span>
+      <span class="col-md-2">Open</span>
+      <span class="col-md-8">
+        <!--Prio:-->
+        <span *ngIf="ticket.prio === 0" class="ticket-prio-very-high">
+          very high
+        </span>
+        <span *ngIf="ticket.prio === 1" class="ticket-prio-high">
+          high
+        </span>
+        <span *ngIf="ticket.prio === 2" class="ticket-prio-medium">
+          medium
+        </span>
+        <span *ngIf="ticket.prio === 3" class="ticket-prio-low">
+          low
+        </span>
+        <span *ngIf="ticket.prio === 4" class="ticket-prio-low-importance">
+          low importance
+        </span>
+      </span>
+    </span>
+    <span *ngIf="!ticket.status" class="ticket-closed">
+      <span class="col-md-2">{{ticket.name}}</span>
+      <span class="col-md-2">{{ticket.assignee}}</span>
+      <span class="col-md-2">Closed</span>
+    </span>
+  </li>
+</ul>

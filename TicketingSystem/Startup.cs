@@ -31,6 +31,7 @@ namespace TicketingSystem
                 sp.GetRequiredService<IOptions<TicketingSystemDatabaseSettings>>().Value);
 
             services.AddSingleton<TicketService>();
+            services.AddSingleton<UserService>();
 
             services.AddControllers();
 

@@ -3,10 +3,10 @@ import { HttpClient } from '@angular/common/http';
 
 @Component({
     selector: 'app-home',
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.scss'],
+    templateUrl: './tickets.component.html',
+    styleUrls: ['./tickets.component.scss'],
 })
-export class HomeComponent {
+export class TicketsComponent {
     public tickets: Ticket[];
 
     constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
