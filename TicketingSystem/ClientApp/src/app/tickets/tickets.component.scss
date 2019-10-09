@@ -1,3 +1,7 @@
+app-ticket-details {
+  padding: 10px;
+}
+
 ul {
   list-style-type: none;
 }
@@ -9,15 +13,19 @@ span {
     .ticket-prio-very-high {
       color: red;
     }
+
     .ticket-prio-high {
       color: darkorange;
     }
+
     .ticket-prio-medium {
       color: cornflowerblue;
     }
+
     .ticket-prio-low {
       color: green;
     }
+
     .ticket-prio-low-importance {
       color: darkgreen;
     }

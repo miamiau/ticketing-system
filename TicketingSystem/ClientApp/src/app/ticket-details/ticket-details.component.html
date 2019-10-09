@@ -1,0 +1,56 @@
+<div *ngIf="ticket.status" class="ticket-details">
+  <div class="ticket-main-details">
+    <div>
+      {{ticket.subject}}
+    </div>
+    <div>
+      <button (click)="editTicket(ticket)">Edit</button>
+      <button (click)="deleteTicket(ticket)">Delete</button>
+      <button (click)="closeTicket(ticket)">Close</button>
+    </div>
+  </div>
+  <div class="ticket-additional-details">
+    <span>Type: {{ticket.type}}</span>
+    <span>Customer: {{ticket.customer}}</span>
+    <span>Service type: {{ticket.serviceType}}</span>
+    <span>Priority: {{ticket.priority}}</span>
+    <span>Description: {{ticket.description}}</span>
+    <!--<span>Status: {{ticket.status}}</span>-->
+    <span>Status: OPEN</span>
+    <span>Opened at: {{ticket.openDateTime}}</span>
+    <!--<span>Closed at: {{ticket.closeDateTime}}</span>-->
+  </div>
+</div>
+
+
+<!--<span *ngIf="ticket.status" class="ticket-open">
+  <span class="col-md-2">{{ticket.name}}</span>
+  <span class="col-md-2">{{ticket.assignee}}</span>
+  <span class="col-md-2">Open</span>
+  <span class="col-md-2">
+    <span *ngIf="ticket.prio === 0" class="ticket-prio-very-high">
+      very high
+    </span>
+    <span *ngIf="ticket.prio === 1" class="ticket-prio-high">
+      high
+    </span>
+    <span *ngIf="ticket.prio === 2" class="ticket-prio-medium">
+      medium
+    </span>
+    <span *ngIf="ticket.prio === 3" class="ticket-prio-low">
+      low
+    </span>
+    <span *ngIf="ticket.prio === 4" class="ticket-prio-low-importance">
+      low importance
+    </span>
+  </span>
+  <button (click)="deleteTicket(ticket)">Delete</button>
+  <button (click)="closeTicket(ticket)">Close</button>
+</span>
+<span *ngIf="!ticket.status" class="ticket-closed">
+  <span class="col-md-2">{{ticket.name}}</span>
+  <span class="col-md-2">{{ticket.assignee}}</span>
+  <span class="col-md-2">Closed</span>
+</span>
+
+<button (click)="createTicket()">Create ticket</button>-->

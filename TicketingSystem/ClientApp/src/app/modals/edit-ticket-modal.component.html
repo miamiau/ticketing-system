@@ -1,0 +1,59 @@
+<h1 mat-dialog-title>Ticket {{ticket.subject}}</h1>
+
+<mat-dialog-content [formGroup]="form">
+  <mat-form-field>
+    <input matInput placeholder="Customer" formControlName="customer">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Description" formControlName="description">
+  </mat-form-field>
+  <!--<mat-form-field>
+    <label for="serviceType">Service type: </label>
+    <input matInput readonly [value]="ticket.serviceType">
+  </mat-form-field>
+  <mat-form-field>
+    <label for="priority">Priority: </label>
+    <input matInput readonly [value]="ticket.priority">
+  </mat-form-field>
+  <mat-form-field>
+    <label for="status">Status: </label>
+    <input matInput readonly [value]="ticket.status">
+  </mat-form-field>-->
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="onSave(ticket)" cdkFocusInitial>Save</button>
+  <button mat-button (click)="onCancel()">Cancel</button>
+</mat-dialog-actions>
+
+
+<!--<div class="row">
+  <div class="col-md-12">
+    <form>
+      <div class="form-group">
+        <label for="subject">Subject: </label>
+        <span></span>
+      </div>
+      <div class="form-group">
+        <label for="description">Description: </label>
+        <span>{{ticket.description}}</span>
+      </div>
+      <div class="form-group">
+        <label for="customer">Customer: </label>
+        <input type="text" class="form-control" [value]="ticket.customer" />
+      </div>
+      <div class="form-group">
+        <label for="serviceType">Service type: </label>
+        <span>{{ticket.serviceType}}</span>
+      </div>
+      <div class="form-group">
+        <label for="priority">Priority: </label>
+        <span>{{ticket.priority}}</span>
+      </div>
+      <div class="form-group">
+        <label for="status">Status: </label>
+        <span>{{ticket.status}}</span>
+      </div>
+    </form>
+  </div>
+</div>-->

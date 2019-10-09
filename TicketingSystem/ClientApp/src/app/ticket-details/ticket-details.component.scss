@@ -1,0 +1,19 @@
+div {
+  max-width: 400px;
+
+  div.ticket-main-details {
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    div {
+      align-content: center;
+    }
+  }
+
+  div.ticket-additional-details {
+    display: flex;
+    flex-direction: column;
+  }
+}
