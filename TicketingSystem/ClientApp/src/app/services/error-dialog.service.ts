@@ -10,7 +10,7 @@ export class ErrorDialogService {
     openErrorDialog(errorText: string): void {
         const dialogRef = this.matDialog.open(ErrorDialogComponent, {
             width: '300px',
-            data: errorText
+            data: errorText + " Please register into the system!"
         });
 
         dialogRef.afterClosed().subscribe(result => {

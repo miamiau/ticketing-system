@@ -24,5 +24,4 @@ export class TicketsComponent {
     createTicket() {
         this.createTicketDialogService.openCreateTicketDialog();
     }
-
 }
