@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Ticket {{ticket.subject}}</h1>
+
+<mat-dialog-content [formGroup]="form">
+  <mat-form-field>
+    <input matInput placeholder="Description" formControlName="description">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Customer" formControlName="customer">
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="onSave(ticket)" cdkFocusInitial>Save</button>
+  <button mat-button (click)="onCancel()">Cancel</button>
+</mat-dialog-actions>

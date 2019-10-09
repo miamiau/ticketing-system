@@ -1,0 +1,42 @@
+<h1 mat-dialog-title>Ticket {{ticket.subject}}</h1>
+
+<mat-dialog-content [formGroup]="form">
+  <mat-form-field>
+    <input matInput placeholder="Description" formControlName="description">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Ticket Type" formControlName="type">
+      <mat-option value="Technical">Technical</mat-option>
+      <mat-option value="Hardware">Hardware</mat-option>
+      <mat-option value="Software">Software</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Customer" formControlName="customer">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select matNativeControl placeholder="Service Type" formControlName="serviceType">
+      <mat-option value="DesktopHardware">Desktop Hardware</mat-option>
+      <mat-option value="DesktopSoftware">Desktop Software</mat-option>
+      <mat-option value="Server">Server</mat-option>
+      <mat-option value="Networking">Networking</mat-option>
+      <mat-option value="NewEmployee">New Employee</mat-option>
+      <mat-option value="Website">Website</mat-option>
+      <mat-option value="ChangeRequest">Change Request</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Priority" formControlName="priority">
+      <mat-option value="LowImportance">Low Importance</mat-option>
+      <mat-option value="Low">Low</mat-option>
+      <mat-option value="Medium">Medium</mat-option>
+      <mat-option value="High">High</mat-option>
+      <mat-option value="HighImportance">High Importance</mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="onSave(ticket)" cdkFocusInitial>Save</button>
+  <button mat-button (click)="onCancel()">Cancel</button>
+</mat-dialog-actions>

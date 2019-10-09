@@ -1,26 +1,31 @@
-import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Ticket } from '../models/ticket.model';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
-    selector: 'app-edit-ticket-modal',
-    templateUrl: 'edit-ticket-modal.component.html',
-    styleUrls: ['edit-ticket-modal.component.scss']
+    selector: 'app-create-ticket-modal',
+    templateUrl: 'create-ticket-modal.component.html',
+    styleUrls: ['create-ticket-modal.component.scss']
 })
-export class EditTicketModalComponent implements OnInit {
+export class CreateTicketModalComponent implements OnInit {
     form: FormGroup;
+
     constructor(private fb: FormBuilder,
-        public dialogRef: MatDialogRef<EditTicketModalComponent>,
+        public dialogRef: MatDialogRef<CreateTicketModalComponent>,
         @Inject(MAT_DIALOG_DATA) public ticket: Ticket) { }
 
 
     ngOnInit() {
         this.form = this.fb.group({
+            description: this.ticket.description,
+            type: this.ticket.type,
             customer: this.ticket.customer,
-            description: this.ticket.description
+            serviceType: this.ticket.serviceType,
+            priority: this.ticket.priority,
         });
     }
+
     onSave(ticket: Ticket) {
         this.dialogRef.close(this.form.value);
     }

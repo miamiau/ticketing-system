@@ -49,7 +49,7 @@ namespace TicketingSystem.Models
 
         [BsonElement("Priority")]
         [JsonProperty("Priority")]
-        public int Priority { get; set; }
+        public string Priority { get; set; }
 
         [BsonElement("Assignee")]
         [JsonProperty("Assignee")]
