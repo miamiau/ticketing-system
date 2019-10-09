@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Login</h1>
+
+<mat-dialog-content [formGroup]="form">
+  <mat-form-field>
+    <input matInput placeholder="Email" formControlName="email">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Password" formControlName="password">
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="onLogin()" cdkFocusInitial>Login</button>
+  <button mat-button (click)="onCancel()">Cancel</button>
+</mat-dialog-actions>

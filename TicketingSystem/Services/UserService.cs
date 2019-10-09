@@ -16,7 +16,7 @@ namespace TicketingSystem.Services
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
 
-            
+
             //_users = database.GetCollection<User>(settings.UsersCollectionName);
             _users = database.GetCollection<User>("Users");
         }

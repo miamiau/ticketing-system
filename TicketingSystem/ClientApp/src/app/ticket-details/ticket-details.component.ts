@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 
 import { Ticket } from '../models/ticket.model';
-import { EditTicketModalComponent } from '../edit-ticket-modal/edit-ticket-modal.component';
-import { WarningModalComponent } from '../warning-modal/warning-modal.component';
+import { EditTicketDialogService } from '../services/edit-ticket-dialog.service';
+import { WarningDialogService } from '../services/warning-dialog.service';
 
 @Component({
     selector: 'app-ticket-details',
@@ -14,56 +14,21 @@ import { WarningModalComponent } from '../warning-modal/warning-modal.component'
 export class TicketDetailsComponent {
     @Input() ticket: Ticket;
 
-    constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private matDialog: MatDialog) {
+    constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private matDialog: MatDialog,
+        private editTicketDialogService: EditTicketDialogService,
+        private warningDialogService: WarningDialogService) {
 
     }
 
-    editTicket(ticket: Ticket) {
-        const dialogRef = this.matDialog.open(EditTicketModalComponent, {
-            width: '300px',
-            data: ticket
-        });
-
-        dialogRef.afterClosed().subscribe((updatedTicket: Partial<Ticket>) => {
-            if (updatedTicket) {
-                ticket.customer = updatedTicket.customer;
-                ticket.description = updatedTicket.description;
-                console.log(ticket);
-                this.http.put<Ticket>(this.baseUrl + 'api/tickets/' + ticket.id, ticket).subscribe(result => {
-                },
-                    error => console.error(error));
-            }
-        });
+    editTicket() {
+        this.editTicketDialogService.openEditTicketDialog(this.ticket);
     }
 
     closeTicket(ticket: Ticket) {
-        const dialogRef = this.matDialog.open(WarningModalComponent, {
-            width: '300px',
-            data: 'Are you sure you want to close ticket ' + ticket.subject + '?'
-        });
-
-        dialogRef.afterClosed().subscribe((isOk: boolean) => {
-            if (isOk) {
-                ticket.status = false;
-                this.http.put<Ticket>(this.baseUrl + 'api/tickets/' + ticket.id, ticket).subscribe(result => {
-                },
-                    error => console.error(error));
-            }
-        });
+        this.warningDialogService.openCloseTicketDialog(ticket);
     }
 
     deleteTicket(ticket: Ticket) {
-        const dialogRef = this.matDialog.open(WarningModalComponent, {
-            width: '300px',
-            data: 'Are you sure you want to delete ticket ' + ticket.subject + '?'
-        });
-
-        dialogRef.afterClosed().subscribe((isOk: boolean) => {
-            if (isOk) {
-                this.http.delete<Ticket>(this.baseUrl + 'api/tickets/' + ticket.id).subscribe(result => {
-                },
-                    error => console.error(error));
-            }
-        });
+        this.warningDialogService.openDeleteTicketDialog(ticket);
     }
 }

@@ -11,10 +11,17 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { TicketsComponent } from './tickets/tickets.component';
 import { TicketDetailsComponent } from './ticket-details/ticket-details.component';
 import { CounterComponent } from './counter/counter.component';
-import { LoginComponent } from './login/login.component';
-import { CreateTicketModalComponent } from './create-ticket-modal/create-ticket-modal.component';
-import { EditTicketModalComponent } from './edit-ticket-modal/edit-ticket-modal.component';
-import { WarningModalComponent } from './warning-modal/warning-modal.component';
+import { CreateTicketDialogComponent } from './create-ticket-dialog/create-ticket-dialog.component';
+import { EditTicketDialogComponent } from './edit-ticket-dialog/edit-ticket-dialog.component';
+import { LoginDialogComponent } from './login-dialog/login-dialog.component';
+import { WarningDialogComponent } from './warning-dialog/warning-dialog.component';
+import { HttpConfigInterceptor } from './interceptor/http-config.interceptor';
+import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
+import { LoginService } from './services/login.service';
+import { CreateTicketDialogService } from './services/create-ticket-dialog.service';
+import { EditTicketDialogService } from './services/edit-ticket-dialog.service';
+import { WarningDialogService } from './services/warning-dialog.service';
+import { ErrorDialogService } from './services/error-dialog.service';
 
 @NgModule({
     declarations: [
@@ -22,11 +29,12 @@ import { WarningModalComponent } from './warning-modal/warning-modal.component';
         NavMenuComponent,
         TicketsComponent,
         TicketDetailsComponent,
-        LoginComponent,
         CounterComponent,
-        CreateTicketModalComponent,
-        EditTicketModalComponent,
-        WarningModalComponent,
+        CreateTicketDialogComponent,
+        EditTicketDialogComponent,
+        LoginDialogComponent,
+        WarningDialogComponent,
+        ErrorDialogComponent
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -34,8 +42,7 @@ import { WarningModalComponent } from './warning-modal/warning-modal.component';
         FormsModule,
         ReactiveFormsModule,
         RouterModule.forRoot([
-            { path: '', redirectTo: 'login', pathMatch: 'full' },
-            { path: 'login', component: LoginComponent },
+            { path: '', redirectTo: 'tickets', pathMatch: 'full' },
             { path: 'tickets', component: TicketsComponent },
         ]),
         MatDialogModule,
@@ -51,11 +58,20 @@ import { WarningModalComponent } from './warning-modal/warning-modal.component';
         MatSelectModule,
     ],
     entryComponents: [
-        CreateTicketModalComponent,
-        EditTicketModalComponent,
-        WarningModalComponent,
+        CreateTicketDialogComponent,
+        EditTicketDialogComponent,
+        LoginDialogComponent,
+        WarningDialogComponent,
+        ErrorDialogComponent
     ],
-    providers: [],
+    providers: [
+        LoginService,
+        CreateTicketDialogService,
+        EditTicketDialogService,
+        WarningDialogService,
+        ErrorDialogService,
+        { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true }
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 
 import { Ticket } from '../models/ticket.model';
-import { CreateTicketModalComponent } from '../create-ticket-modal/create-ticket-modal.component';
+import { CreateTicketDialogService } from '../services/create-ticket-dialog.service';
 
 @Component({
     selector: 'app-tickets',
@@ -13,7 +13,8 @@ import { CreateTicketModalComponent } from '../create-ticket-modal/create-ticket
 export class TicketsComponent {
     public tickets: Ticket[];
 
-    constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private matDialog: MatDialog) {
+    constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private matDialog: MatDialog,
+        private createTicketDialogService: CreateTicketDialogService) {
         http.get<Ticket[]>(baseUrl + 'api/tickets').subscribe(result => {
             this.tickets = result;
         },
@@ -21,41 +22,7 @@ export class TicketsComponent {
     }
 
     createTicket() {
-        let ticket: Partial<Ticket> = {
-            subject: "TK-" + this.generateTicketNumber(),
-        }
-
-
-
-        const dialogRef = this.matDialog.open(CreateTicketModalComponent, {
-            width: '300px',
-            data: ticket
-        });
-
-        dialogRef.afterClosed().subscribe((newTicket: Ticket) => {
-            if (newTicket) {
-                ticket.type = newTicket.type;
-                ticket.customer = newTicket.customer;
-                ticket.serviceType = newTicket.serviceType;
-                ticket.priority = newTicket.priority;
-                ticket.status = true;
-                ticket.openDateTime = new Date();
-                console.log(ticket);
-                this.http.post<Ticket>(this.baseUrl + 'api/tickets', ticket).subscribe(result => {
-                },
-                    error => console.error(error));
-            }
-        });
+        this.createTicketDialogService.openCreateTicketDialog();
     }
 
-
-    generateTicketNumber() {
-        return Math.floor(Math.random() * 10000 + 1000);
-    }
-
-    deleteTicket(ticket: Ticket) {
-        this.http.delete<Ticket>(this.baseUrl + 'api/tickets').subscribe(result => {
-        },
-            error => console.error(error));
-    }
 }
