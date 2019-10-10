@@ -13,16 +13,19 @@ namespace TicketingSystem.Controllers
     public class LoginController : ControllerBase
     {
         private readonly LoginService _loginService;
+        private readonly EncryptionService _encryptionService;
 
-        public LoginController(LoginService loginService)
+        public LoginController(LoginService loginService, EncryptionService encryptionService)
         {
             _loginService = loginService;
+            _encryptionService = encryptionService;
         }
 
         [HttpPost]
         public ActionResult<String> Authenticate(User userToAuthenticate)
         {
-            var user = _loginService.Get(userToAuthenticate.Email, userToAuthenticate.Password);
+
+            var user = _loginService.Get(userToAuthenticate.Email, _encryptionService.EncryptSha256Hash(userToAuthenticate.Password));
 
             if (user == null)
             {

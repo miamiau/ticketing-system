@@ -30,6 +30,7 @@ namespace TicketingSystem
             services.AddSingleton<ITicketingSystemDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<TicketingSystemDatabaseSettings>>().Value);
 
+            services.AddSingleton<EncryptionService>();
             services.AddSingleton<LoginService>();
             services.AddSingleton<TicketService>();
             services.AddSingleton<UserService>();
